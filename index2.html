@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>myMemoPad</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample2.css">
+</head>
+<body>
+<header>
+<h1>My Daily MemoPad</h1>
+</header>
+<main>
+  <div class="space50"></div>
+  <table frame="box" rules="none">
+    <tr>
+      <!-- memoのヘッド th colspanで設定するらしい-->
+      <th colspan="2" id="colspan">
+        Memo Pad
+      </th>
+    </tr>
+    <tr>
+      <!-- memoのtitle: -->
+      <th scope="row" class="row">
+          TITLE:
+      </th>
+      <td>
+        <!-- title入力 -->
+        <input type="text" id="key"> 
+      </td>
+    </tr>
+    <tr>
+      <th scope="row" class="row">
+        NOTE:
+      </th>
+      <td>
+        <!-- memo内容入力 -->
+        <textarea id="memo"></textarea>
+      </td>
+    </tr>
+  </table>
+    
+    <ul>
+        <li id="save">Save</li>
+        <li id="clear">Clear</li>
+        <li id="recordclear">Record Clear</li>
+    </ul>
+  
+</main>
+<div class="space"></div>
+<div id="hozon">
+<!-- 保存メモのタイトルとメモの表示場所を記載 -->
+<!-- <table class="head"><tr>
+  <th id="titlehead">TITLE:</th>
+  <td id="memohead">NOTE:</td>
+</table> -->
+</tr>
+<table id="list">
+    <!-- ここに追加データが挿入される -->
+</table>
+<div class="space50"></div>
+<script>
+
+//1.Save クリックイベント
+    $("#save").on("click",function(){
+        // ローカルストレージに保存
+        const key = $("#key").val();
+        const memo = $("#memo").val();
+        localStorage.setItem(key, memo);
+        // テーブルに行を追加するfunctionを後で設定。持ってくる場所を作っておく。
+        edit(key, memo);
+        
+        // 入力フィールドをきれいにする
+        $("#key, #memo").val("");   
+
+    });
+
+//2.clear クリックイベント
+    $("#clear").on("click",function(){
+        $("#key , #memo").val("");
+    });
+
+//3.recordclear クリックイベント
+    $("#recordclear").on("click",function(){
+        localStorage.clear();
+        $("#list").empty();
+    });
+
+
+//4.ページ読み込み：保存データ取得表示
+    // HTML=DOMの読み込みが終わったらfunction()の中の動作を実行する。1津下の塊だけじゃダメなの？
+    $(document).ready(function (){
+      updateTable();
+    });
+
+  function updateTable() {
+    $("#list").empty(); // テーブルをクリア
+    for(let i=0; i<localStorage.length; i++){
+    // ローカルストレージのキーが0から採番されている
+    const key = localStorage.key(i);
+   // kei(i)に対応したmemoを呼び込む
+    const memo = localStorage.getItem(key);
+    //saveの時同様にテーブルに行を追加するfunctionを後で設定。持ってくる場所を作っておく。
+        edit(key, memo);
+    }
+  }
+
+// テーブルに表示するfunction
+function edit(key,memo) {
+          // tableタグに入れるので、行のtr要素、見出しのth要素、テーブルタグのtd要素を設定(参照： )
+          // 編集ボタンを追加するので、まずは空の<td>を作る
+          // idやclassじゃなくても、自分で作った内容に$を入れられる？？(質問)
+            const row = $("<tr><th id='thkey'>" + key + "</th><td id='memoinput'>" + memo + "</td><td class='btn'><td class='btn'></tr>");
+          // rowをlistのidに入れる
+            $("#list").append(row);
+
+          // tableに追加する編集ボタンを作る
+            const editBtn = $("<a class=`editBtn`>編集する</a>").on("click",function(){
+              // 編集のfunction関数を実施する
+              editMemo(key);            
+            });
+            // テーブルで空にしてた3つ目のtdにeditBtnを入れる。この書き方覚えておく         
+            row.find("td:nth-child(3)").append(editBtn);
+
+          // tableに追加する削除ボタンを作る
+          const deleteBtn = $("<a class=`deleteBtn`>削除する</a>").on("click",function(){
+              // 編集のfunction関数を実施する
+              deleteMemo(key);            
+            });
+            row.find("td:last-child").append(deleteBtn);
+          }
+
+// テーブルを編集する関数
+    function editMemo(key) {
+      // keyに基づいて編集処理を行う
+      const editedMemo = prompt("編集したらOKを押してください。", localStorage.getItem(key));
+      // キャンセルを押した場合はnull、OKが押されたらtrueが返され、入力したテキストがlocal strageにset(保存)され、updateTable関数を呼び出しテーブルが更新される
+      if (editedMemo !== null) {
+        localStorage.setItem(key, editedMemo);
+        // 編集後にテーブルを更新
+        updateTable();
+      }
+    }
+
+// テーブルを削除する関数
+function deleteMemo(key) {
+      // keyに基づいて編集処理を行う
+      localStorage.removeItem(key);
+      // 編集後にテーブルを更新
+      updateTable();
+
+      }
+
+</script>
+<footer><small>G's</small></footer>
+</body>
+</html>

@@ -1,0 +1,199 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 32px;
+  width: 100%;
+  background-color: rgb(241, 239, 239);
+}
+header {
+  background-color: #F69696;
+  text-align: center;
+  height: 100px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+.space50 {height: 50px;}
+h1 {
+  font-size: 80%;
+  color: #000;
+  background-color: #F69696;
+  text-align: center;
+  margin: auto;
+}
+main {
+  /* width: 100%; */
+  /* display: block; */
+  border-bottom: 1px solid #ccc;
+  /* position: relative; */
+}
+table{
+  /* table-layout: fixed; */
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px 3px #555;
+  width: 1200px;
+  margin: 0 auto; 
+}
+.head{
+  box-shadow: 3px 3px 3px 3px #555;
+}
+#colspan{
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  font-size: 80%;
+  background-color: #F69696;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  box-shadow: 3px 3px 3px 3px #555;
+}
+.list{
+  table-layout: fixed;
+  width: 1200px;
+}
+.row{
+  color: #FF7F50;
+  width  : 15%;
+  margin: 3%; /* 上下の余白を削除し、左右に3%の余白 */
+  padding: 0 3%;
+  height: 60px;
+  font-size: 80%;
+  text-align: left;
+  align-items:center; /* 上下方向の中央揃え */
+  background-color: #FFF0F5;
+  border-bottom: 1px solid #fff;
+  box-shadow: 3px 3px 3px 3px #555;
+}
+#dateinput{
+  padding-left: 50.828px;
+  padding-top: 10px;
+  display: flex;
+  /* text-align: center; */
+}
+footer {
+  color: #000;
+  background-color: #F69696;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+#key{
+  margin: 10px 5%;
+  width: 90%;
+  height: 60px;
+  font-size: 80%;
+  box-shadow: 3px 3px 3px 3px #555;
+  background-color: #fff;
+}
+textarea {
+  margin: 10px 5%;
+  width: 90%;
+  height: 200px;
+  font-size: 80%;
+  box-shadow: 3px 3px 3px 3px #555;
+  background-color: #fff;
+}
+
+p {
+  font-size: 80%;
+  padding: 0 20px;
+}
+ul {
+  padding: 0;
+  border: 1px solid #555;
+  display: table; /* 定義 */
+  table-layout: fixed;
+  width: 1200px;
+  font-size: 80%;
+  margin: 60px auto 60px auto;
+  text-align: center;
+  box-shadow: 3px 3px 3px 3px #555;
+}
+li {
+  list-style-type: none;
+  gap: 5px;
+  border: 1px solid #555;
+  background-color: #f4a583;
+  width: 300px;
+  display: table-cell; /* 定義 */
+  cursor: pointer;
+  color: #000;
+  padding: 5px;
+}
+
+li:hover {
+  background: #FF7F50;
+  color: #fff;
+}
+
+
+input{
+  width: 95%;
+}
+
+th {
+  width: 30%;
+  font-size: 80%;
+  background-color: rgb(241, 239, 239);
+  border-bottom: 1px solid #fff;
+  /* box-shadow: 3px 3px 3px 3px #555; */
+  word-wrap: break-word;
+}
+td {
+  font-size: 80%;
+  background-color: #FFF0F5;
+  border-bottom: 1px solid #fff;
+  word-wrap: break-word;
+  /* box-shadow: 3px 3px 3px 3px #555; */
+}
+#dataspace{
+  display: flex;
+}
+#month, #date{
+  width: 15%;
+  font-size: 80%;
+  height: 50px;
+  box-shadow: 3px 3px 3px 3px #555;
+}
+#titlehead{
+  height: 50px;
+  width: 30%;
+  background-color: #F69696;
+  color: #fff;
+  padding-left: 20px;
+}
+#memohead{
+  height: 50px;
+  width: 70%;
+  background-color: #F69696;
+  color: #fff;
+  padding-left: 20px;
+}
+#thkey {
+  width: 30%;
+  background-color: #FFF0F5;
+}
+#memoinput {
+  width: 53%;
+  font-size: 80%;
+}
+.btn {
+  display: inline-block;
+  width: 70px; /* 任意の幅を指定 */
+  padding: 5px; /* ボタンの内側の余白 */
+  margin: 5px; /* ボタン同士の外側の余白 */
+  cursor: pointer;
+  background-color: #FFF0F5;
+  color: #000;
+  text-align: center;
+  border: 1px solid #fff;
+  border-radius: 5px; /* 角丸 */
+  box-shadow: 3px 3px 3px 3px #555;
+  font-size: 60%;
+}
+.btn:hover {
+  background-color: #F69696;
+  color: #fff;
+}
